@@ -1,29 +1,30 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is a npm package that unifies the payroll create methods on both verifi-ui and verifi-api
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+The payroll calculation method unified into this codebase and can be imported as a npm module
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* clone the repo
+* install nodejs packages
 
 ### Contribution guidelines ###
 
 * Writing tests
 * Code review
-* Other guidelines
+
+### How to publish changes ###
+
+Here are the scripts to run
+* prepare will run both BEFORE the package is packed and published, and on local `npm install`
+* prepublishOnly will run BEFORE prepare and ONLY on npm publish
+* preversion will run before bumping a new package version.
+* Version will run after a new version has been bumped. If your package has a git repository, like in our case, a commit and a new version-tag will be made every time you bump a new version. This command will run BEFORE the commit is made. 
+* Postversion will run after the commit has been made. A perfect place for pushing the commit as well as the tag.
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Team members

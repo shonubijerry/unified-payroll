@@ -1,0 +1,38 @@
+{
+  "name": "unified-payroll",
+  "version": "1.0.0",
+  "description": "payroll calculation method unified",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --config jestconfig.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/verifing/unified-payroll.git"
+  },
+  "author": "Korede Shonubi",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/verifing/unified-payroll#readme",
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.0.7",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.4.4"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "keywords": ["Bento"]
+}
