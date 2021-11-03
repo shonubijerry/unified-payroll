@@ -4,8 +4,17 @@
 		"module": "commonjs",
 		"declaration": true,
 		"outDir": "./lib",
-		"strict": true
+		"strict": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./src",
+		"paths": {
+			"@/*": ["./*"],
+			"@services/*": ["./services/*"],
+			"@test/*": ["./__tests__/*"],
+		}
 	},
-"include": ["src"],
-"exclude": ["node_modules", "**/__tests__/*"]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules"],
 }

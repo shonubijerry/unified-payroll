@@ -3,5 +3,11 @@
 			"^.+\\.(t|j)sx?$": "ts-jest"
 	},
 	"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-	"moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+	"moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+	"rootDir": ".",
+	"moduleNameMapper": {
+		"@/(.*)": "<rootDir>/src/$1",
+		"@services/(.*)": "<rootDir>/src/services/$1",
+		"@fixtures/(.*)": "<rootDir>/src/__tests__/fixtures/$1"
+	}
 }
