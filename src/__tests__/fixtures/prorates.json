@@ -1,0 +1,24 @@
+{
+  "entries": {
+    "case1": [
+      {
+        "organization": "60e7c830bf19830b5cf4e450",
+        "employee": "60e7ccccbf19830b5cf4e461",
+        "created_by": "60e7cb84bf19830b5cf4e45c",
+        "end_date": "2021-11-18T06:43:00.000Z",
+        "start_date": "2021-11-01T06:43:00.000Z",
+        "name": "ukhjk",
+        "type": "once",
+        "status": "pending",
+        "isDeleted": false,
+        "createdAt": "2021-11-04T06:43:23.113Z",
+        "updatedAt": "2021-11-04T06:43:23.113Z",
+        "id": "6183810bc576bd7fafe4f639"
+      }
+    ]
+  },
+  "meta": {
+    "proRateMonth": "November",
+    "paidDays": 18
+  }
+}

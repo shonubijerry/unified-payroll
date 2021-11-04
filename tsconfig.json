@@ -13,8 +13,9 @@
 			"@/*": ["./*"],
 			"@services/*": ["./services/*"],
 			"@test/*": ["./__tests__/*"],
+			"@fixtures/*": ["./__tests__/fixtures/*"],
 		}
 	},
 	"include": ["src/**/*"],
-	"exclude": ["node_modules"],
+	"exclude": ["node_modules", "**/__tests__/**/*"],
 }

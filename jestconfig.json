@@ -1,4 +1,6 @@
 {
+	"coverageDirectory": "./coverage/jest",
+	"testEnvironment": "node",
 	"transform": {
 			"^.+\\.(t|j)sx?$": "ts-jest"
 	},
@@ -9,5 +11,6 @@
 		"@/(.*)": "<rootDir>/src/$1",
 		"@services/(.*)": "<rootDir>/src/services/$1",
 		"@fixtures/(.*)": "<rootDir>/src/__tests__/fixtures/$1"
-	}
+	},
+	"verbose": true
 }

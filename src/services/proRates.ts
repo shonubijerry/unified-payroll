@@ -1,16 +1,16 @@
 import * as moment from 'moment';
 
-import { Log, StandardDTO } from '@/types';
+import { Application, Logger, StandardDTO } from '@/types';
 
 /**
  * Pass in the proRates after they have been fetched from db
- * @param payload - { organization, employee, proRates, meta: { paidDays, proRateMonth } }
- * @param log Log
- * @returns 
+ * @param payload - { organization, employee, meta: { paidDays, proRateMonth, proRates } }
+ * @returns [organization, employee, proRateMonth, log]
  */
-export const processProRates = (payload: StandardDTO, log: Log) => {
-  const { organization, employee, proRates, meta } = payload;
-  const { paidDays, proRateMonth } = meta;
+export const processProRates = (payload: StandardDTO) => {
+  const log: Logger = { events: [ { msg:''} ] };
+  const { organization, employee, meta } = payload;
+  const { paidDays, proRateMonth, proRates } = meta;
 
   if (!proRateMonth) return [organization, employee, proRateMonth, log];
 
@@ -22,31 +22,33 @@ export const processProRates = (payload: StandardDTO, log: Log) => {
 
   if (!employee.application) {
     log.events.push({
-      msg: `Employee with id: ${employee.id} application not found, please check, ProcessProRates`,
+      msg: `Employee with id: ${employee._id} application not found, please check, ProcessProRates`,
     });
     return [organization, employee, proRateMonth, log];
   }
 
-  log.events.push({ msg: `Starting ${employee.application.firstname}` });
+  const application = <Application>employee.application;
+
+  log.events.push({ msg: `Starting ${application.firstname}` });
 
   log.events.push({
-    msg: `${employee.application.firstname} has ${paidDays}`,
+    msg: `${application.firstname} has ${paidDays}`,
   });
   const base = employee.base_payable || employee.base_salary;
   const proRatedSalary = (base / payrollDays) * (paidDays as number);
   const proRateDeduction = base - proRatedSalary;
 
   log.events.push({
-    msg: `${employee.application.firstname} - ${base} | ${proRatedSalary} | ${proRateDeduction}`,
+    msg: `${application.firstname} - ${base} | ${proRatedSalary} | ${proRateDeduction}`,
   });
 
-  employee.pro_rates = proRates;
+  employee.pro_rates = proRates as any[];
   employee.pro_rate_deduction = (paidDays as number) > 0 ? proRateDeduction : 0;
 
   employee.base_payable = (paidDays as number) > 0 ? proRatedSalary : base;
 
   log.events.push({
-    msg: `${employee.application.firstname} has pro rate deduction ${proRateDeduction}`,
+    msg: `${application.firstname} has pro rate deduction ${proRateDeduction}`,
   });
 
   return [organization, employee, proRateMonth, log];
