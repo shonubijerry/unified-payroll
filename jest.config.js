@@ -10,8 +10,8 @@ module.exports = {
   coverageDirectory: './coverage/jest',
   testEnvironment: 'node',
   moduleNameMapper: {
+		"@src/(.*)": "<rootDir>/src/$1",
     "@fixtures/(.*)": "<rootDir>/src/__tests__/fixtures/$1",
-		"@services/(.*)": "<rootDir>/src/services/$1",
-		"@src/(.*)": "<rootDir>/src/$1"
+		"@services/(.*)": "<rootDir>/src/services/$1"
   },
 };

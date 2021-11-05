@@ -10,12 +10,12 @@
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": "./src",
 		"paths": {
-			"@fixtures/*": ["./__tests__/fixtures/*"],
+			"@fixtures/*": ["src/__tests__/fixtures/*"],
 			"@services/*": ["./services/*"],
-			"@test/*": ["./__tests__/*"],
+			"@test/*": ["src/__tests__/*"],
 			"@src/*": ["./*"],
 		}
 	},
 	"include": ["src/**/*"],
-	"exclude": ["node_modules", "**/__tests__/**/*"],
+	"exclude": ["node_modules"],
 }

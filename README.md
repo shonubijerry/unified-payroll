@@ -1,4 +1,7 @@
-# README #
+# Unified Payroll #
+
+[![Build Status](https://travis-ci.com/shonubijerry/quick-credit.svg?branch=develop)](https://travis-ci.com/shonubijerry/payroll)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This is a npm package that unifies the payroll create methods on both verifi-ui and verifi-api
 
