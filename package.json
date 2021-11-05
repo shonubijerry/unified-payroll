@@ -9,8 +9,9 @@
     "test": "jest --coverage --runInBand --config jest.config.js",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run lint && npm run format && npm run build",
-    "version": "git add -A src",
+    "prepare": "npm run build && npm run lint && npm run format && npm test",
+    "preversion": "npm run lint",
+    "version": "git add -A .",
     "postversion": "git push && git push --tags"
   },
   "repository": {
@@ -57,7 +58,7 @@
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "eslint --fix",
+      "tslint -p tsconfig.json",
       "git add"
     ]
   },
