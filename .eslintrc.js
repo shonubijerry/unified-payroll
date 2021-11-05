@@ -44,6 +44,7 @@ module.exports = {
     'no-empty-function': ['error', { allow: ['methods', 'constructors'] }],
     'max-classes-per-file': ['error', 10],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-angle-bracket-type-assertion': false,
   },
   settings: {
     'import/parsers': {

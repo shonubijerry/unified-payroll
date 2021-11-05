@@ -109,7 +109,7 @@ export type Employee = {
     housing_percent: number;
     transport_percent: number;
     food: number;
-    phone: number
+    phone: number;
   };
   enabledSalaryBreakdown: boolean;
   group: string | object;
@@ -117,7 +117,7 @@ export type Employee = {
   leaveAllowance: number;
   pro_rates: any[];
   pro_rate_deduction: number;
-  base_payable: number;   
+  base_payable: number;
 };
 
 export type Application = {
@@ -175,7 +175,6 @@ export type User = {
 export type Prorate = any;
 
 export type Meta = {
-  proRateMonth: string;
   paidDays?: number;
   proRates?: Prorate[];
 };
@@ -183,5 +182,8 @@ export type Meta = {
 export type StandardDTO = {
   organization: Organiztion;
   employee: Employee;
+  proRateMonth: string;
   meta: Meta;
 };
+
+export type ProRateRes = [Organiztion, Employee, string, Logger];

@@ -20,8 +20,8 @@ describe('ProRates (e2e)', () => {
   });
   test('Should prorate employee 1 day salary', () => {
     meta.proRates = entries.case1;
-    const res = processProRates({ organization, employee, meta: { ...meta, paidDays: 1 } });
-    const emp = <Employee>res[1]
+    const res = processProRates({ organization, employee, proRateMonth: 'November', meta: { ...meta, paidDays: 1 } });
+    const emp = <Employee>res[1];
 
     expect(emp.pro_rates).toBeDefined();
     expect(emp.pro_rates.length).toEqual(1);
@@ -31,8 +31,8 @@ describe('ProRates (e2e)', () => {
 
   test('Should prorate employee salary', () => {
     meta.proRates = entries.case1;
-    const res = processProRates({ organization, employee, meta });
-    const emp = <Employee>res[1]
+    const res = processProRates({ organization, employee, proRateMonth: 'November', meta });
+    const emp = <Employee>res[1];
 
     expect(emp.pro_rates).toBeDefined();
     expect(emp.pro_rates.length).toEqual(1);
