@@ -1,9 +1,9 @@
 import { cloneDeep } from 'lodash';
-import { processProRates } from '@/index';
 
 import * as fixtures from './fixtures/default.json';
 import * as prorates from './fixtures/prorates.json';
-import { Employee, Meta, Organiztion } from '@/types';
+import { Employee, Meta, Organiztion } from '@src/types';
+import { processProRates } from '@src/index';
 
 let organization: Organiztion;
 let employee: Employee;

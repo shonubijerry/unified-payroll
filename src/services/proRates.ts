@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-import { Application, Logger, StandardDTO, ProRateRes } from '@/types';
+import { Application, Logger, StandardDTO, ProRateRes } from '@src/types';
 
 /**
  * Pass in the proRates after they have been fetched from db

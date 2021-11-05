@@ -1,6 +1,6 @@
 import * as _ from '@services/base';
-import { Payload, PayrollData } from '@/interface';
-import { Intents } from '@/types';
+import { Payload, PayrollData } from '@src/interface';
+import { Intents } from '@src/types';
 
 export class UnifiedPayroll {
   private registry = new Map<string, Service>();

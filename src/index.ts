@@ -1,4 +1,4 @@
-import { Intents, IntentServices } from '@/types';
+import { Intents, IntentServices } from '@src/types';
 import { processProRates, getNumberOfWeekdaysInMonth, calculateWeekDays } from '@services/proRates';
 import { UnifiedPayroll } from '@services/payroll';
 

@@ -1,6 +1,6 @@
 /* tslint:disable:max-classes-per-file */
 
-import { Payload, PayrollData } from '@/interface';
+import { Payload, PayrollData } from '@src/interface';
 import { PayrollService, Service } from '@services/payroll';
 
 export class BaseService implements Service {

@@ -1,4 +1,4 @@
-import * as _ from '@/services/base';
+import * as _ from '@services/base';
 
 export enum Intents {
   Create = 'create',

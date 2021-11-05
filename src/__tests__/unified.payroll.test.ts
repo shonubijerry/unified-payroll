@@ -1,5 +1,5 @@
-import { unifiedPayroll } from '@/index';
-import { Intents } from '@/types';
+import { unifiedPayroll } from '@src/index';
+import { Intents } from '@src/types';
 
 test('Should prepare data for create payroll', () => {
   const res = unifiedPayroll(Intents.Create).processAddons({

@@ -10,10 +10,10 @@
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": "./src",
 		"paths": {
-			"@/*": ["./*"],
+			"@fixtures/*": ["./__tests__/fixtures/*"],
 			"@services/*": ["./services/*"],
 			"@test/*": ["./__tests__/*"],
-			"@fixtures/*": ["./__tests__/fixtures/*"],
+			"@src/*": ["./*"],
 		}
 	},
 	"include": ["src/**/*"],
