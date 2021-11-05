@@ -29,7 +29,7 @@ describe('ProRates (e2e)', () => {
     expect(emp.base_payable).toEqual(4000);
   });
 
-  test('Should prorate employee salary', () => {
+  test('Should prorate employee salary ', () => {
     meta.proRates = entries.case1;
     const res = processProRates({ organization, employee, proRateMonth: 'November', meta });
     const emp = <Employee>res[1];
