@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-import { Application, Logger, StandardDTO, ProRateRes } from '@src/types';
+import { Application, Logger, StandardDTO, StandardRes } from '@src/types';
 
 /**
  * Process pro rate of employee salary
@@ -8,7 +8,7 @@ import { Application, Logger, StandardDTO, ProRateRes } from '@src/types';
  * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { paidDays, proRates } }
  * @returns [organization, employee, proRateMonth, log]
  */
-export const processProRates = (payload: StandardDTO): ProRateRes => {
+export const processProRates = (payload: StandardDTO): StandardRes => {
   const log: Logger = { events: [{ msg: '' }] };
   const { organization, employee, proRateMonth, meta } = payload;
   const { paidDays, proRates } = meta;

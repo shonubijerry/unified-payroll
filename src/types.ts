@@ -199,4 +199,4 @@ export type StandardDTO = {
   meta: Meta;
 };
 
-export type ProRateRes = [Organiztion, Employee, string, Logger];
+export type StandardRes = [Organiztion, Employee, string, Logger];

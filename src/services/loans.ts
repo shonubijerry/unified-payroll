@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
 
-import { Logger, StandardDTO, ProRateRes, SalaryLoans } from '@src/types';
+import { Logger, StandardDTO, StandardRes, SalaryLoans } from '@src/types';
 
 /**
  * Process Salary loan requests. These are pay loans
@@ -8,7 +8,7 @@ import { Logger, StandardDTO, ProRateRes, SalaryLoans } from '@src/types';
  * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { salaryLoans } }
  * @returns [organization, employee, proRateMonth, log]
  */
-export const processLoans = (payload: StandardDTO): ProRateRes => {
+export const processLoans = (payload: StandardDTO): StandardRes => {
   const log: Logger = { events: [{ msg: '' }] };
   const { organization, employee, proRateMonth, meta } = payload;
   const { salaryLoans } = meta;
