@@ -115,13 +115,17 @@ export type Employee = {
   group: string | object;
   enabledLeaveAllowance: boolean;
   leaveAllowance: number;
+  allowance_payable: number;
+  net_income: number;
+  base_payable: number;
   pro_rates: Partial<Prorate>;
   pro_rate_deduction: number;
-  base_payable: number;
   total_loan_disbursement: number;
   total_loan_deduction: number;
-  loan_deductions: Partial<SalaryLoans>[];
-  loan_disbursements: Partial<SalaryLoans>[];
+  loan_deductions: Partial<SalaryLoan>[];
+  loan_disbursements: Partial<SalaryLoan>[];
+  bonuses: Partial<Bonus>[];
+  total_bonus: number;
 };
 
 export type Application = {
@@ -178,7 +182,7 @@ export type User = {
 
 export type Prorate = any;
 
-export type SalaryLoans = {
+export type SalaryLoan = {
   id: string;
   amount: number;
   status: string;
@@ -186,10 +190,24 @@ export type SalaryLoans = {
   repayment_amount: number;
 };
 
+export type Bonus = {
+  "id": string,
+  "employee": string | Employee,
+  "type": string,
+  "mode": string,
+  "isDeleted": boolean,
+  "status": string,
+  "organization": string | Organiztion,
+  "amount": number;
+  "name": string
+  "endDate": string
+};
+
 export type Meta = {
   paidDays?: number;
   proRates?: Prorate[];
-  salaryLoans?: SalaryLoans[];
+  salaryLoans?: SalaryLoan[];
+  bonuses?: Bonus[];
 };
 
 export type StandardDTO = {

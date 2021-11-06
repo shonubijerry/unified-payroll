@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
 
-import { Logger, StandardDTO, StandardRes, SalaryLoans } from '@src/types';
+import { Logger, StandardDTO, StandardRes, SalaryLoan } from '@src/types';
 
 /**
  * Process Salary loan requests. These are pay loans
@@ -21,7 +21,7 @@ export const processLoans = (payload: StandardDTO): StandardRes => {
   employee.total_loan_disbursement = 0;
 
   // loop just once to save time complexity
-  (<SalaryLoans[]>salaryLoans).forEach((loan: SalaryLoans) => {
+  (<SalaryLoan[]>salaryLoans).forEach((loan: SalaryLoan) => {
     if (['disbursed', 'refunding'].includes(loan.status)) {
       employee.loan_deductions.push({
         id: loan.id,
