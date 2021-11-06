@@ -1,0 +1,66 @@
+{
+  "entries": {
+    "case1": [
+      {
+        "_id": "60fa75f748be8a31b6643297",
+        "repayment_duration": 1,
+        "advance_amount": 30000,
+        "interest_rate": 5,
+        "flat_interest": 1500,
+        "verifi_commission": 250,
+        "verifi_commission_paid": true,
+        "verifi_commission_charged": true,
+        "repayment_amount": 31500,
+        "compound_loan": true,
+        "repaid_amount": 0,
+        "status": "approved",
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "organization": "60e7c830bf19830b5cf4e450",
+        "repaid_duration": 0,
+        "repaid_in_payrolls": [],
+        "approved_by_verifi": false,
+        "isDeleted": true
+      },
+      {
+        "_id": "60fa75f748be8a31b6643297",
+        "repayment_duration": 1,
+        "advance_amount": 40000,
+        "interest_rate": 5,
+        "flat_interest": 2000,
+        "verifi_commission": 250,
+        "verifi_commission_paid": true,
+        "verifi_commission_charged": true,
+        "repayment_amount": 42000,
+        "compound_loan": true,
+        "repaid_amount": 0,
+        "status": "refunding",
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "organization": "60e7c830bf19830b5cf4e450",
+        "repaid_duration": 0,
+        "repaid_in_payrolls": [],
+        "approved_by_verifi": false,
+        "isDeleted": true
+      },
+      {
+        "_id": "60fa75f748be8a31b6643297",
+        "repayment_duration": 1,
+        "advance_amount": 80000,
+        "interest_rate": 5,
+        "flat_interest": 2000,
+        "verifi_commission": 250,
+        "verifi_commission_paid": true,
+        "verifi_commission_charged": true,
+        "repayment_amount": 84000,
+        "compound_loan": true,
+        "repaid_amount": 0,
+        "status": "disbursed",
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "organization": "60e7c830bf19830b5cf4e450",
+        "repaid_duration": 0,
+        "repaid_in_payrolls": [],
+        "approved_by_verifi": false,
+        "isDeleted": true
+      }
+    ]
+  }
+}

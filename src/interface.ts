@@ -8,4 +8,5 @@ export interface Payload {
 export interface PayrollData {
   organization: any;
   employee: any;
+  other?: any;
 }

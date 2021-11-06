@@ -12,6 +12,16 @@ export class BaseService implements Service {
 
 export class CreateService extends BaseService implements PayrollService {}
 
-export class EditService extends BaseService implements PayrollService {}
+export class EditService extends BaseService implements PayrollService {
+  processAddons(payload: Payload): PayrollData {
+    const { organization, employee } = payload;
+    return { organization, employee, other: `${organization}-${employee}` };
+  }
+}
 
-export class CreateFromWorksheetService extends BaseService implements PayrollService {}
+export class CreateFromWorksheetService extends BaseService implements PayrollService {
+  processAddons(payload: Payload): PayrollData {
+    const { organization, employee } = payload;
+    return { organization, employee, other: `${organization}-${organization}` };
+  }
+}

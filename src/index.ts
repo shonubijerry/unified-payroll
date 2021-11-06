@@ -1,5 +1,6 @@
 import { Intents, IntentServices } from '@src/types';
 import { processProRates, getNumberOfWeekdaysInMonth, calculateWeekDays } from '@services/proRates';
+import { processLoans } from '@services/loans';
 import { UnifiedPayroll } from '@services/payroll';
 
 export const Greeter = (name: string) => `Hello ${name}`;
@@ -14,4 +15,12 @@ export const unifiedPayroll = (intent: Intents) => {
   return unified.getService(intent) as IntentServices;
 };
 
-export { processProRates, getNumberOfWeekdaysInMonth, calculateWeekDays };
+/**
+ * export main functions
+ */
+export { processProRates, processLoans };
+
+/**
+ * export helper functions
+ */
+export { getNumberOfWeekdaysInMonth, calculateWeekDays };

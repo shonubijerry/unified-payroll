@@ -3,8 +3,9 @@ import * as moment from 'moment';
 import { Application, Logger, StandardDTO, ProRateRes } from '@src/types';
 
 /**
+ * Process pro rate of employee salary
  * Pass in the proRates after they have been fetched from db
- * @param {StandardDTO} payload StandardDTO - { organization, employee, meta: { paidDays, proRateMonth, proRates } }
+ * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { paidDays, proRates } }
  * @returns [organization, employee, proRateMonth, log]
  */
 export const processProRates = (payload: StandardDTO): ProRateRes => {
