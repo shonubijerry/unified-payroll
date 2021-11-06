@@ -1,0 +1,52 @@
+{
+  "entries": {
+    "case1": [
+      {
+        "_id": "60f68542e858443a5448d039",
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "type": "once",
+        "mode": "quick",
+        "isDeleted": false,
+        "status": "pending",
+        "organization": "60e7c830bf19830b5cf4e450",
+        "amount": 100000,
+        "name": "Salary Bonus"
+      },
+      {
+        "_id": "60f68542e858443a5448d039",
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "type": "recurring",
+        "mode": "quick",
+        "isDeleted": false,
+        "status": "pending",
+        "organization": "60e7c830bf19830b5cf4e450",
+        "amount": 30000,
+        "name": "House bonus"
+      }
+    ],
+    "case2": [
+      {
+        "_id": "60f68542e858443a5448d039",
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "type": "once",
+        "mode": "quick-untaxed",
+        "isDeleted": false,
+        "status": "pending",
+        "organization": "60e7c830bf19830b5cf4e450",
+        "amount": 50000,
+        "name": "Salary Bonus"
+      },
+      {
+        "_id": "60f68542e858443a5448d039",
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "type": "recurring",
+        "mode": "quick-untaxed",
+        "isDeleted": false,
+        "status": "pending",
+        "organization": "60e7c830bf19830b5cf4e450",
+        "amount": 40000,
+        "name": "House bonus"
+      }
+    ]
+  }
+}

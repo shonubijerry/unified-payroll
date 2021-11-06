@@ -126,6 +126,8 @@ export type Employee = {
   loan_disbursements: Partial<SalaryLoan>[];
   bonuses: Partial<Bonus>[];
   total_bonus: number;
+  untaxed_bonuses: Partial<Bonus>[];
+  total_untaxed_bonus: number;
 };
 
 export type Application = {
@@ -208,6 +210,7 @@ export type Meta = {
   proRates?: Prorate[];
   salaryLoans?: SalaryLoan[];
   bonuses?: Bonus[];
+  untaxed_bonuses?: Bonus[];
 };
 
 export type StandardDTO = {
