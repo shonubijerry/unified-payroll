@@ -20,7 +20,7 @@ export type Logger = {
 export type LogMessage = { msg: string };
 
 export type Organiztion = {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   phonenumber: string;
@@ -66,10 +66,13 @@ export type Organiztion = {
   leaveAllowancePercent: number;
   enabledITFRemit: boolean;
   itfID: string;
+  enabledExtraMonth: boolean;
+  extraMonthPercentage: number;
+  extraMonth: string;
 };
 
 export type Employee = {
-  _id: string;
+  id: string;
   bank: string | object;
   account_number: string;
   base_salary: number;
@@ -128,6 +131,8 @@ export type Employee = {
   total_bonus: number;
   untaxed_bonuses: Partial<Bonus>[];
   total_untaxed_bonus: number;
+  extra_month_salary: number;
+  extraMonth: Partial<Bonus>;
 };
 
 export type Application = {
@@ -193,16 +198,17 @@ export type SalaryLoan = {
 };
 
 export type Bonus = {
-  "id": string,
-  "employee": string | Employee,
-  "type": string,
-  "mode": string,
-  "isDeleted": boolean,
-  "status": string,
-  "organization": string | Organiztion,
-  "amount": number;
-  "name": string
-  "endDate": string
+  id: string;
+  employee: string | Employee;
+  type: string;
+  mode: string;
+  isDeleted: boolean;
+  status: string;
+  organization: string | Organiztion;
+  amount: number;
+  name: string;
+  endDate: string;
+  description: string;
 };
 
 export type Meta = {
@@ -210,7 +216,8 @@ export type Meta = {
   proRates?: Prorate[];
   salaryLoans?: SalaryLoan[];
   bonuses?: Bonus[];
-  untaxed_bonuses?: Bonus[];
+  untaxedBonuses?: Bonus[];
+  extraMonth?: Bonus;
 };
 
 export type StandardDTO = {
@@ -220,4 +227,9 @@ export type StandardDTO = {
   meta: Meta;
 };
 
-export type StandardRes = [Organiztion, Employee, string, Logger];
+export type ResMeta = {
+  log: Logger;
+  extraMonthToCreate?: Partial<Bonus>;
+};
+
+export type StandardRes = [Organiztion, Employee, string, ResMeta];

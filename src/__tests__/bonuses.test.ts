@@ -61,7 +61,7 @@ describe('Untaxed Bonus (e2e)', () => {
     ({ entries } = <any>bonuses);
   });
   test('Should process untaxed bonuses', () => {
-    meta.untaxed_bonuses = entries.case2;
+    meta.untaxedBonuses = entries.case2;
     const res = processUntaxedBonuses({ organization, employee, proRateMonth, meta });
     const emp = <Employee>res[1];
 
@@ -72,7 +72,7 @@ describe('Untaxed Bonus (e2e)', () => {
   });
 
   test('Should abort if untaxed bonuses is empty or not provided', () => {
-    meta.untaxed_bonuses = [];
+    meta.untaxedBonuses = [];
     const res = processUntaxedBonuses({ organization, employee, proRateMonth, meta });
     const emp = <Employee>res[1];
 

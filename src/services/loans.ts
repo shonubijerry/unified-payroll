@@ -13,7 +13,7 @@ export const processLoans = (payload: StandardDTO): StandardRes => {
   const { organization, employee, proRateMonth, meta } = payload;
   const { salaryLoans } = meta;
 
-  if (isEmpty(salaryLoans)) return [organization, employee, proRateMonth, log];
+  if (isEmpty(salaryLoans)) return [organization, employee, proRateMonth, { log }];
 
   employee.loan_deductions = [];
   employee.total_loan_deduction = 0;
@@ -39,5 +39,5 @@ export const processLoans = (payload: StandardDTO): StandardRes => {
     }
   });
 
-  return [organization, employee, proRateMonth, log];
+  return [organization, employee, proRateMonth, { log }];
 };

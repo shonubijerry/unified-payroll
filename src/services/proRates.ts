@@ -13,7 +13,7 @@ export const processProRates = (payload: StandardDTO): StandardRes => {
   const { organization, employee, proRateMonth, meta } = payload;
   const { paidDays, proRates } = meta;
 
-  if (!proRateMonth) return [organization, employee, proRateMonth, log];
+  if (!proRateMonth) return [organization, employee, proRateMonth, { log }];
 
   const payrollDays = getNumberOfWeekdaysInMonth(proRateMonth);
 
@@ -25,9 +25,9 @@ export const processProRates = (payload: StandardDTO): StandardRes => {
 
   if (!application) {
     log.events.push({
-      msg: `Employee with id: ${employee._id} application not found, please check, ProcessProRates`,
+      msg: `Employee with id: ${employee.id} application not found, please check, ProcessProRates`,
     });
-    return [organization, employee, proRateMonth, log];
+    return [organization, employee, proRateMonth, { log }];
   }
 
   log.events.push({ msg: `Starting ${application.firstname}` });
@@ -52,7 +52,7 @@ export const processProRates = (payload: StandardDTO): StandardRes => {
     msg: `${application.firstname} has pro rate deduction ${proRateDeduction}`,
   });
 
-  return [organization, employee, proRateMonth, log];
+  return [organization, employee, proRateMonth, { log }];
 };
 
 /**
