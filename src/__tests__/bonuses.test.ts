@@ -1,7 +1,7 @@
 import { cloneDeep, isEmpty } from 'lodash';
 
 import { Employee, Meta, Organiztion, ResMeta } from '@src/types';
-import { processBonuses, processUntaxedBonuses, processExtraMonth, calculateSalary } from '@src/index';
+import { processBonuses, processUntaxedBonuses, processExtraMonth, calculateSalary, processLeaveAllowance } from '@src/index';
 
 import * as fixtures from './fixtures/default.json';
 import * as bonuses from './fixtures/bonuses.json';
@@ -141,7 +141,53 @@ describe('Extra Month (e2e)', () => {
   });
 });
 
+describe('Leave Allowance (e2e)', () => {
+  beforeEach(async () => {
+    const fix: any = cloneDeep(fixtures);
+
+    organization = fix.organizations[0];
+    employee = fix.employees[0];
+    ({ entries } = <any>bonuses);
+  });
+  test('Should process untaxed bonuses', () => {
+    meta.leaveAllowances = entries.case4;
+    const res = processLeaveAllowance({ organization, employee, proRateMonth, meta });
+    const emp = <Employee>res[1];
+
+    expect(emp.leave_allowances.length).toEqual(1);
+    expect(emp.total_leave_allowance).toEqual(10000);
+    expect(emp.allowance_payable).toEqual(10000);
+    expect(emp.net_income).toEqual(130000);
+  });
+
+  test('Should abort if organization disabled leave allowance', () => {
+    meta.untaxedBonuses = [];
+    organization.enabledLeaveAllowance = false
+    const res = processLeaveAllowance({ organization, employee, proRateMonth, meta });
+    const emp = <Employee>res[1];
+
+    expect(emp.total_leave_allowance).toBeUndefined();
+    expect(emp.leave_allowances).toBeUndefined();
+  });
+
+  test('Should abort if invalid leaveAllowance is passed in', () => {
+    meta.leaveAllowances = undefined;
+    const res = processLeaveAllowance({ organization, employee, proRateMonth, meta });
+    const emp = <Employee>res[1];
+
+    expect(emp.total_leave_allowance).toBeUndefined();
+    expect(emp.leave_allowances).toBeUndefined();
+  });
+});
+
 describe('Unit Test', () => {
+  beforeEach(async () => {
+    const fix: any = cloneDeep(fixtures);
+
+    organization = fix.organizations[0];
+    employee = fix.employees[0];
+    ({ entries } = <any>bonuses);
+  });
   test('Should calcuate salary', () => {
     meta.untaxedBonuses = entries.case2;
     employee.total_untaxed_bonus = 34000;

@@ -121,6 +121,38 @@ export const processExtraMonth = (payload: StandardDTO): StandardRes => {
 };
 
 /**
+* Process employee leave allowance.
+* Pass in the bonuses after they have been fetched from db
+* @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { leaveAllowances } }
+* @returns [organization, employee, proRateMonth, { log }]
+*/
+export const processLeaveAllowance = (payload: StandardDTO): StandardRes => {
+ const log: Logger = { events: [{ msg: '' }] };
+ const { organization, employee, proRateMonth, meta } = payload;
+ const { leaveAllowances } = meta;
+
+ if (!organization.enabledLeaveAllowance || isEmpty(leaveAllowances))
+  return [organization, employee, proRateMonth, { log }];
+
+ employee.total_leave_allowance = 0;
+
+ employee.leave_allowances = (<Bonus[]>leaveAllowances).map((bonus) => {
+   employee.total_leave_allowance += bonus.amount;
+
+   return {
+     id: bonus.id,
+     type: bonus.type,
+     amount: bonus.amount,
+     description: bonus.name,
+   };
+ });
+
+ calculateSalary(employee, employee.total_leave_allowance);
+
+ return [organization, employee, proRateMonth, { log }];
+};
+
+/**
  * Calculate and add a bunus item to employee net income
  * @param {Employee} employee
  * @param {number} addition

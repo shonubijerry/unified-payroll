@@ -133,6 +133,8 @@ export type Employee = {
   total_untaxed_bonus: number;
   extra_month_salary: number;
   extraMonth: Partial<Bonus>;
+  total_leave_allowance: number;
+  leave_allowances: Partial<Bonus>[];
 };
 
 export type Application = {
@@ -218,6 +220,7 @@ export type Meta = {
   bonuses?: Bonus[];
   untaxedBonuses?: Bonus[];
   extraMonth?: Bonus;
+  leaveAllowances?: Bonus[];
 };
 
 export type StandardDTO = {
