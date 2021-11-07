@@ -121,11 +121,11 @@ export const processExtraMonth = (payload: StandardDTO): StandardRes => {
 };
 
 /**
-* Process employee leave allowance.
-* Pass in the bonuses after they have been fetched from db
-* @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { leaveAllowances } }
-* @returns [organization, employee, proRateMonth, { log }]
-*/
+ * Process employee leave allowance.
+ * Pass in the bonuses after they have been fetched from db
+ * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { leaveAllowances } }
+ * @returns [organization, employee, proRateMonth, { log }]
+ */
 export const processLeaveAllowance = (payload: StandardDTO): StandardRes => {
   const log: Logger = { events: [{ msg: '' }] };
   const { organization, employee, proRateMonth, meta } = payload;
