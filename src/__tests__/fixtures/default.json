@@ -1,4 +1,4 @@
-{ 
+{
   "organizations": [
     {
       "_id" : "60e7c830bf19830b5cf4e450",
@@ -36,7 +36,7 @@
       "pensionType" : "deduct",
       "pencomNumber" : "978978897",
       "enabledPensionRemit" : true,
-      "taxStates" : [ 
+      "taxStates" : [
           {
               "payeID" : "78987",
               "state" : "60e7c3f3bf19830b5cf4e449"
@@ -51,7 +51,10 @@
       "enabledLeaveAllowance" : true,
       "leaveAllowancePercent" : 10.4,
       "enabledITFRemit" : true,
-      "itfID" : "767868678678"
+      "itfID" : "767868678678",
+      "extraMonth" : "November",
+      "enabledExtraMonth": true,
+      "extraMonthPercentage": 15
     }
   ],
   "employees": [

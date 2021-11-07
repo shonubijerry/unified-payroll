@@ -6,7 +6,7 @@ import { Logger, StandardDTO, StandardRes, Bonus, Employee } from '@src/types';
  * Process employee bonuses.
  * Pass in the bonuses after they have been fetched from db
  * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { bonuses } }
- * @returns [organization, employee, proRateMonth, log]
+ * @returns [organization, employee, proRateMonth, { log }]
  */
 export const processBonuses = (payload: StandardDTO): StandardRes => {
   const log: Logger = { events: [{ msg: '' }] };
@@ -42,7 +42,7 @@ export const processBonuses = (payload: StandardDTO): StandardRes => {
  * Process employee untaxed bonuses.
  * Pass in the bonuses after they have been fetched from db
  * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { untaxedBonuses } }
- * @returns [organization, employee, proRateMonth, log]
+ * @returns [organization, employee, proRateMonth, { log }]
  */
 export const processUntaxedBonuses = (payload: StandardDTO): StandardRes => {
   const log: Logger = { events: [{ msg: '' }] };
@@ -73,8 +73,10 @@ export const processUntaxedBonuses = (payload: StandardDTO): StandardRes => {
  * Process employee extra month bonus.
  * Pass in the bonuses after they have been fetched from db
  * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { extraMonth } }
- * @returns [organization, employee, proRateMonth, log, extraMonthToCreate]
- * From the returned object check if extraMonthToCreate is defined, so it can be created in db
+ * @returns [organization, employee, proRateMonth, { log, extraMonthToCreate, updateExtraMonth }]
+ * @BackendNote inspect the returned object, if extraMonthToCreate is defined,
+ * created it in db and add the new record in employee.extraMonth = { id, type, amount, description }
+ * @BackendNote save the {extraMonth} passed into meta to keep in sync with employee.extra_month_salary
  */
 export const processExtraMonth = (payload: StandardDTO): StandardRes => {
   const log: Logger = { events: [{ msg: '' }] };
@@ -87,6 +89,7 @@ export const processExtraMonth = (payload: StandardDTO): StandardRes => {
   employee.extra_month_salary = employee.salary * (organization.extraMonthPercentage / 100);
 
   let extraMonthToCreate: Partial<Bonus> = {};
+  let updateExtraMonth = false;
 
   if (!extraMonth) {
     extraMonthToCreate = {
@@ -97,7 +100,7 @@ export const processExtraMonth = (payload: StandardDTO): StandardRes => {
       organization: organization.id,
       mode: 'extra-month',
     };
-    // create extramonth after this function returns data
+    // create extramonth after this function returns data, and update employee.extraMonth with new record
   } else {
     employee.extraMonth = {
       id: extraMonth.id,
@@ -105,14 +108,23 @@ export const processExtraMonth = (payload: StandardDTO): StandardRes => {
       amount: extraMonth.amount,
       description: extraMonth.name,
     };
-    // check if extraMonth.amount is same as employee.extra_month_salary else update it and save
+    // check if extraMonth.amount is not same as employee.extra_month_salary, update it and save
+    if (employee.extra_month_salary !== extraMonth.amount) {
+      extraMonth.amount = employee.extra_month_salary;
+      updateExtraMonth = true;
+    }
   }
 
   calculateSalary(employee, employee.extra_month_salary);
 
-  return [organization, employee, proRateMonth, { log, extraMonthToCreate }];
+  return [organization, employee, proRateMonth, { log, extraMonthToCreate, updateExtraMonth }];
 };
 
+/**
+ * Calculate and add a bunus item to employee net income
+ * @param {Employee} employee
+ * @param {number} addition
+ */
 export const calculateSalary = (employee: Employee, addition: number) => {
   const base = employee.base_payable || employee.base_salary;
   const allowance = employee.allowance_payable || 0;

@@ -230,6 +230,7 @@ export type StandardDTO = {
 export type ResMeta = {
   log: Logger;
   extraMonthToCreate?: Partial<Bonus>;
+  updateExtraMonth?: boolean;
 };
 
 export type StandardRes = [Organiztion, Employee, string, ResMeta];

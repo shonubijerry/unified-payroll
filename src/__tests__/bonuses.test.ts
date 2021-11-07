@@ -1,7 +1,7 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isEmpty } from 'lodash';
 
-import { Employee, Meta, Organiztion } from '@src/types';
-import { processBonuses, processUntaxedBonuses } from '@src/index';
+import { Employee, Meta, Organiztion, ResMeta } from '@src/types';
+import { processBonuses, processUntaxedBonuses, processExtraMonth } from '@src/index';
 
 import * as fixtures from './fixtures/default.json';
 import * as bonuses from './fixtures/bonuses.json';
@@ -77,5 +77,66 @@ describe('Untaxed Bonus (e2e)', () => {
     const emp = <Employee>res[1];
 
     expect(emp.untaxed_bonuses).toBeUndefined();
+  });
+});
+
+describe('Extra Month (e2e)', () => {
+  beforeEach(async () => {
+    const fix: any = cloneDeep(fixtures);
+
+    organization = fix.organizations[0];
+    employee = fix.employees[0];
+    ({ entries } = <any>bonuses);
+  });
+  test('Should process extra month bonus', () => {
+    meta.extraMonth = entries.case3;
+    const res = processExtraMonth({ organization, employee, proRateMonth, meta });
+    const emp = <Employee>res[1];
+    const resMeta = <ResMeta>res[3];
+
+    expect(emp.extraMonth).toBeDefined();
+    expect(emp.extra_month_salary).toEqual(18000);
+    expect(emp.net_income).toEqual(138000);
+    expect(isEmpty(resMeta.extraMonthToCreate)).toBe(true);
+    expect(resMeta.updateExtraMonth).toEqual(true);
+  });
+
+  test('Should process extra month bonus if meta.extraMonth is undefined', () => {
+    meta.extraMonth = undefined;
+    const res = processExtraMonth({ organization, employee, proRateMonth, meta });
+    const emp = <Employee>res[1];
+    const resMeta = <ResMeta>res[3];
+
+    expect(emp.extraMonth).toBeUndefined();
+    expect(emp.extra_month_salary).toEqual(18000);
+    expect(emp.net_income).toEqual(138000);
+    expect(resMeta.extraMonthToCreate).toBeDefined();
+    expect(resMeta.extraMonthToCreate?.amount).toEqual(18000);
+    expect(resMeta.updateExtraMonth).toEqual(false);
+  });
+
+  test('Should abort if organization has not enabled extra month', () => {
+    meta.extraMonth = entries.case3;
+    organization.enabledExtraMonth = false;
+    const res = processExtraMonth({ organization, employee, proRateMonth, meta });
+    const emp = <Employee>res[1];
+    const resMeta = <ResMeta>res[3];
+
+    expect(emp.extraMonth).toBeUndefined();
+    expect(emp.extra_month_salary).toBeUndefined();
+    expect(resMeta.extraMonthToCreate).toBeUndefined();
+    expect(resMeta.updateExtraMonth).toBeUndefined();
+  });
+
+  test('Should abort if extra month is not same as proRateMonth', () => {
+    meta.extraMonth = entries.case3;
+    const res = processExtraMonth({ organization, employee, proRateMonth: 'October', meta });
+    const emp = <Employee>res[1];
+    const resMeta = <ResMeta>res[3];
+
+    expect(emp.extraMonth).toBeUndefined();
+    expect(emp.extra_month_salary).toBeUndefined();
+    expect(resMeta.extraMonthToCreate).toBeUndefined();
+    expect(resMeta.updateExtraMonth).toBeUndefined();
   });
 });

@@ -6,7 +6,7 @@ import { Application, Logger, StandardDTO, StandardRes } from '@src/types';
  * Process pro rate of employee salary
  * Pass in the proRates after they have been fetched from db
  * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { paidDays, proRates } }
- * @returns [organization, employee, proRateMonth, log]
+ * @returns [organization, employee, proRateMonth, { log }]
  */
 export const processProRates = (payload: StandardDTO): StandardRes => {
   const log: Logger = { events: [{ msg: '' }] };

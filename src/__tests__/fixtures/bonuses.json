@@ -47,6 +47,17 @@
         "amount": 40000,
         "name": "House bonus"
       }
-    ]
+    ],
+    "case3": {
+      "_id": "60f68542e858443a5448d039",
+      "employee": "60e7cb17bf19830b5cf4e45a",
+      "type": "once",
+      "mode": "extra-month",
+      "isDeleted": false,
+      "status": "pending",
+      "organization": "60e7c830bf19830b5cf4e450",
+      "amount": 50000,
+      "name": "Salary Bonus"
+    }
   }
 }

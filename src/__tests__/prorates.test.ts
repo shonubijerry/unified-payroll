@@ -1,9 +1,10 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep, clone } from 'lodash';
+import * as moment from 'moment';
 
 import * as fixtures from './fixtures/default.json';
 import * as prorates from './fixtures/prorates.json';
 import { Employee, Meta, Organiztion } from '@src/types';
-import { processProRates, getNumberOfWeekdaysInMonth } from '@src/index';
+import { processProRates, getNumberOfWeekdaysInMonth, calculateWeekDays } from '@src/index';
 
 let organization: Organiztion;
 let employee: Employee;
@@ -69,10 +70,16 @@ describe('ProRates (e2e)', () => {
     expect(emp.pro_rates).toBeUndefined();
   });
 
+  test('Should get number of week days in November', () => {
+    const res = getNumberOfWeekdaysInMonth('November', false);
+
+    expect(res).toBe(30);
+  });
+
   test('Should get number of working days in November', () => {
-    meta.proRates = entries.case1;
-    employee.application = '';
-    const res = getNumberOfWeekdaysInMonth('November', true);
+    const start = moment('2021-11-01');
+    const end = cloneDeep(start).endOf('month');
+    const res = calculateWeekDays(start, end, true);
 
     expect(res).toBe(22);
   });

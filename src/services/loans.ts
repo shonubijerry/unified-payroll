@@ -6,7 +6,7 @@ import { Logger, StandardDTO, StandardRes, SalaryLoan } from '@src/types';
  * Process Salary loan requests. These are pay loans
  * Pass in the loan requests after they have been fetched from db
  * @param {StandardDTO} payload StandardDTO - { organization, employee, proRateMonth, meta: { salaryLoans } }
- * @returns [organization, employee, proRateMonth, log]
+ * @returns [organization, employee, proRateMonth, { log }]
  */
 export const processLoans = (payload: StandardDTO): StandardRes => {
   const log: Logger = { events: [{ msg: '' }] };

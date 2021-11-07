@@ -2,7 +2,7 @@ import { Intents, IntentServices } from '@src/types';
 import { processProRates, getNumberOfWeekdaysInMonth, calculateWeekDays } from '@services/proRates';
 import { processLoans } from '@services/loans';
 import { UnifiedPayroll } from '@services/payroll';
-import { processBonuses, processUntaxedBonuses } from '@services/bonuses';
+import { processBonuses, processUntaxedBonuses, processExtraMonth, calculateSalary } from '@services/bonuses';
 
 export const Greeter = (name: string) => `Hello ${name}`;
 
@@ -19,9 +19,9 @@ export const unifiedPayroll = (intent: Intents) => {
 /**
  * export main functions
  */
-export { processProRates, processLoans, processBonuses, processUntaxedBonuses };
+export { processProRates, processLoans, processBonuses, processUntaxedBonuses, processExtraMonth };
 
 /**
  * export helper functions
  */
-export { getNumberOfWeekdaysInMonth, calculateWeekDays };
+export { getNumberOfWeekdaysInMonth, calculateWeekDays, calculateSalary };
