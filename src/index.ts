@@ -1,6 +1,6 @@
 import { Intents, IntentServices } from '@src/types';
 import { processProRates, getNumberOfWeekdaysInMonth, calculateWeekDays } from '@services/proRates';
-import { processLoans } from '@services/loans';
+import { processLoans, processCDBLoans } from '@services/loans';
 import { UnifiedPayroll } from '@services/payroll';
 import { processBonuses, processUntaxedBonuses, processExtraMonth, calculateSalary, processLeaveAllowance } from '@services/bonuses';
 
@@ -19,7 +19,9 @@ export const unifiedPayroll = (intent: Intents) => {
 /**
  * export main functions
  */
-export { processProRates, processLoans, processBonuses, processUntaxedBonuses, processExtraMonth, processLeaveAllowance };
+export { processProRates, processLoans, processBonuses, processUntaxedBonuses,
+  processExtraMonth, processLeaveAllowance, processCDBLoans
+};
 
 /**
  * export helper functions

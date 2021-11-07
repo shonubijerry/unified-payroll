@@ -19,6 +19,8 @@ export type Logger = {
 
 export type LogMessage = { msg: string };
 
+export type Money = { value: number; currency: string };
+
 export type Organiztion = {
   id: string;
   name: string;
@@ -135,6 +137,10 @@ export type Employee = {
   extraMonth: Partial<Bonus>;
   total_leave_allowance: number;
   leave_allowances: Partial<Bonus>[];
+  cdb_loan_deductions: CDBLoan[];
+  total_cdb_loan_deduction: number;
+  total_cdb_loan_bento_commission: number;
+  total_cdb_loan_bento_commission_transfer_fee: number;
 };
 
 export type Application = {
@@ -199,6 +205,17 @@ export type SalaryLoan = {
   repayment_amount: number;
 };
 
+export type CDBLoan = {
+  amount: Money;
+  employee: string;
+  type: string;
+  provider: string;
+  loanRequestId: string;
+  bentoCommission: Money;
+  bentoInterest: Money;
+  interest: Money;
+};
+
 export type Bonus = {
   id: string;
   employee: string | Employee;
@@ -221,6 +238,8 @@ export type Meta = {
   untaxedBonuses?: Bonus[];
   extraMonth?: Bonus;
   leaveAllowances?: Bonus[];
+  cdbLoans?: CDBLoan[];
+  verifiTransferFee?: number;
 };
 
 export type StandardDTO = {

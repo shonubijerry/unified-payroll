@@ -61,6 +61,74 @@
         "approved_by_verifi": false,
         "isDeleted": true
       }
+    ],
+    "case2": [
+      {
+        "amount": {
+          "value": 49000,
+          "currency": "NGN"
+        },
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "provider": "60cc7f9b37fc60b8b1e8af76",
+        "type": "salary",
+        "loanRequestId": "61461eaf707b0ad583f41ded",
+        "bentoCommission": {
+          "value": 1000,
+          "currency": "NGN"
+        },
+        "bentoInterest": {
+          "value": 0,
+          "currency": "NGN"
+        },
+        "interest": {
+          "value": 4500,
+          "currency": "NGN"
+        }
+      }
+    ],
+    "case3": [
+      {
+        "amount": {
+          "value": 49000,
+          "currency": "NGN"
+        },
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "provider": "60cc7f9b37fc60b8b1e8af76",
+        "type": "salary",
+        "loanRequestId": "61461eaf707b0ad583f41ded",
+        "bentoInterest": {
+          "value": 0,
+          "currency": "NGN"
+        },
+        "interest": {
+          "value": 4500,
+          "currency": "NGN"
+        }
+      }
+    ],
+    "case4": [
+      {
+        "amount": {
+          "value": 49000,
+          "currency": "NGN"
+        },
+        "employee": "60e7cb17bf19830b5cf4e45a",
+        "provider": "60cc7f9b37fc60b8b1e8af76",
+        "type": "salary",
+        "loanRequestId": "61461eaf707b0ad583f41ded",
+        "bentoCommission": {
+          "value": 0,
+          "currency": "NGN"
+        },
+        "bentoInterest": {
+          "value": 0,
+          "currency": "NGN"
+        },
+        "interest": {
+          "value": 4500,
+          "currency": "NGN"
+        }
+      }
     ]
   }
 }
