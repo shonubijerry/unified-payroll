@@ -1,7 +1,7 @@
 import { cloneDeep, isEmpty } from 'lodash';
 
 import { Employee, Meta, Organiztion, ResMeta } from '@src/types';
-import { processBonuses, processUntaxedBonuses, processExtraMonth } from '@src/index';
+import { processBonuses, processUntaxedBonuses, processExtraMonth, calculateSalary } from '@src/index';
 
 import * as fixtures from './fixtures/default.json';
 import * as bonuses from './fixtures/bonuses.json';
@@ -138,5 +138,16 @@ describe('Extra Month (e2e)', () => {
     expect(emp.extra_month_salary).toBeUndefined();
     expect(resMeta.extraMonthToCreate).toBeUndefined();
     expect(resMeta.updateExtraMonth).toBeUndefined();
+  });
+});
+
+describe('Unit Test', () => {
+  test('Should calcuate salary', () => {
+    meta.untaxedBonuses = entries.case2;
+    employee.total_untaxed_bonus = 34000;
+    calculateSalary(employee, employee.total_untaxed_bonus);
+
+    expect(employee.allowance_payable).toEqual(34000);
+    expect(employee.net_income).toEqual(154000);
   });
 });

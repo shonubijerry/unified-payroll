@@ -69,7 +69,9 @@ describe('ProRates (e2e)', () => {
 
     expect(emp.pro_rates).toBeUndefined();
   });
+});
 
+describe('Unit Test', () => {
   test('Should get number of week days in November', () => {
     const res = getNumberOfWeekdaysInMonth('November', false);
 
